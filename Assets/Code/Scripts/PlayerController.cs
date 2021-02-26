@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
             _playerVelocity.y = 0f;
         }
 
-        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector2 movement = _inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
         _controller.Move(move * Time.deltaTime * _playerSpeed);
@@ -62,7 +61,7 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.forward = move;
         }
 
-        // Changes the height position of the player..
+        // Makes the Player "Jump"
         if (_inputManager.PlayerJump() && _groundedPlayer)
         {
             _playerVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravityValue);
