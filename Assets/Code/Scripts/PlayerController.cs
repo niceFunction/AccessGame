@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _gravityValue = -9.81f;
 
+    private Transform _cameraMainTransform;
+
     [SerializeField, Range(0.1f, 10f), Tooltip("Camera")]
     private float _lookSpeed = 4.0f;
     [SerializeField, Tooltip("Minimum angle, Use degrees, ex: 45, 90 etc.")]
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
+        _cameraMainTransform = Camera.main.transform;
         _inputManager = InputManager.Instance;
     }
 
@@ -54,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = _inputManager.GetPlayerMovement();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
+        move = _cameraMainTransform.forward * move.z + _cameraMainTransform.right * move.x;
+        move.y = 0;
         _controller.Move(move * Time.deltaTime * _playerSpeed);
 
         if (move != Vector3.zero)
