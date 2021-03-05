@@ -35,11 +35,17 @@ public class InputManager : MonoBehaviour
         _playerControls.Disable();
     }
 
+    /// <summary>
+    /// Get player movement input
+    /// </summary>
     public Vector2 GetPlayerMovement()
     {
         return _playerControls.Player.Movement.ReadValue<Vector2>();
     }
 
+    /// <summary>
+    /// Get delta from Mouse when player is looking around
+    /// </summary>
     public Vector2 GetMouseDelta()
     {
         return _playerControls.Player.Look.ReadValue<Vector2>();
@@ -48,7 +54,6 @@ public class InputManager : MonoBehaviour
     /// <summary>
     /// Checks if the Player has pressed the Jump button
     /// </summary>
-    /// <returns></returns>
     public bool PlayerJump()
     {
         return _playerControls.Player.Jump.triggered;
