@@ -61,12 +61,6 @@ public class PlayerController : MonoBehaviour
         move.y = 0;
         _controller.Move(move * Time.deltaTime * _playerSpeed);
 
-        /*
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
-        */
         // Makes the Player "Jump"
         if (_inputManager.PlayerJump() && _groundedPlayer)
         {
